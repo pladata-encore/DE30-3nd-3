@@ -23,9 +23,25 @@
                         <a th:if="${session.logined != null}" class="nav-link" th:href="@{/logout}">Log out</a>
                         <a th:unless="${session.logined != null}" class="nav-link" th:href="@{/login}">Log in</a>
                     </li>
+                    <!-- 추가된 아이콘과 버튼 -->
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/help}" onclick="showHelp()">
+                            <i class="bi bi-question-circle"></i> <!-- Bootstrap Icons 사용 -->
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 </section>
+
+
+<script>
+    // 도움말 버튼 클릭 시 도움말 표시
+    function showHelp() {
+        alert("Need help?");
+        // 여기에 도움말 표시에 대한 추가적인 기능을 구현할 수 있습니다.
+    }
+</script>
+
 </html>

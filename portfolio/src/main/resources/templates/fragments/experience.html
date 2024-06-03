@@ -108,6 +108,13 @@
         function deleteExperience() {
         }
     </script>
+    <script>
+        $(document).ready(function() {
+            $("#startDate, #endDate").datepicker({
+                dateFormat: "yy-mm-dd" // 원하는 날짜 형식으로 설정
+            });
+        });
+    </script>
 </section>
 </html>
 

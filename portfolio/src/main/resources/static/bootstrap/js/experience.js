@@ -101,3 +101,8 @@ var currentExpId = null; // 현재 선택된 expId를 저장할 변수
                     alert("경력 정보를 삭제할 수 없습니다. 다시 시도해주세요.");
                 }
         }
+$(document).ready(function() {
+            $("#startDate, #endDate").datepicker({
+                dateFormat: "yy-mm-dd" // 원하는 날짜 형식으로 설정
+            });
+        });

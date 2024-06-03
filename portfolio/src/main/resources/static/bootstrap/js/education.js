@@ -12,9 +12,9 @@ var currentEduId = null; // 현재 선택된 expId를 저장할 변수
                     })
                     .then(education => {
                         // API 호출이 성공하면 모달에 정보를 채움
-                        document.getElementById("educationId").value = education.project_id;
+                        document.getElementById("educationId").value = education.eduId;
                         document.getElementById("school").value = education.school;
-                        document.getElementById("degree").value = education.graduate;
+                        document.getElementById("graduate").value = education.graduate;
                         document.getElementById("major").value = education.major;
                         document.getElementById("description").value = education.content;
                         document.getElementById("adminDate").value = education.start_date;
@@ -38,9 +38,9 @@ var currentEduId = null; // 현재 선택된 expId를 저장할 변수
             var form = document.getElementById('editEducationForm');
             var educationId = form.educationId.value;
             var school = form.school.value;
-            var degree = form.graduate.value;
+            var graduate = form.graduate.value;
             var major = form.major.value;
-            var content = form.content.value;
+            var content = form.description.value;
             var startDate = form.adminDate.value;
             var endDate = form.graduateDate.value;
 
@@ -53,7 +53,7 @@ var currentEduId = null; // 현재 선택된 expId를 저장할 변수
                 body: JSON.stringify({
                     eduId: educationId,
                     school: school,
-                    graduate: degree,
+                    graduate: graduate,
                     major: major,
                     start_date: startDate,
                     end_date: endDate,

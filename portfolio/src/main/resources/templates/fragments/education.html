@@ -39,14 +39,14 @@
                 </div>
                 <div class="modal-body">
                     <form id="editEducationForm">
-                        <input type="hidden" id="educationId" name="id">
+                        <input type="hidden" id="educationId" name="educationId">
                         <div class="mb-3">
                             <label for="school" class="form-label">School</label>
                             <input type="text" class="form-control" id="school" name="school">
                         </div>
                         <div class="mb-3">
-                            <label for="degree" class="form-label">Degree</label>
-                            <input type="text" class="form-control" id="degree" name="graduate">
+                            <label for="graduate" class="form-label">Degree</label>
+                            <input type="text" class="form-control" id="graduate" name="graduate">
                         </div>
                         <div class="mb-3">
                             <label for="major" class="form-label">Major</label>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="content" rows="3"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
@@ -66,10 +66,10 @@
                                 <input type="text" class="form-control" id="graduateDate" name="graduateDate">
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="saveEduChanges()">Save changes</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="saveEduChanges()">Save changes</button>
                 </div>
             </div>
         </div>

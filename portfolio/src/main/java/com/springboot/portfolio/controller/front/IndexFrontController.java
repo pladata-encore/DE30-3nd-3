@@ -24,14 +24,20 @@ public class IndexFrontController {
     @GetMapping("/index")
     public String getUserInfo(Model model) throws Exception {
         User newUser = (User) httpSession.getAttribute("logined");
-        String userId = newUser.getUser_id();
+        if (newUser!=null){
+            String userId = newUser.getUser_id();
 
-        User user = userService.findById(userId);
-        // 이미지 파일 경로 설정
-        String imgPath = user.getImage() != null ? "/bootstrap/assets/uploads/" + user.getImage() : "";
-        user.setImage(imgPath);
+            User user = userService.findById(userId);
+            // 이미지 파일 경로 설정
+            String imgPath = user.getImage() != null ? "/bootstrap/assets/uploads/" + user.getImage() : "";
+            user.setImage(imgPath);
 
-        model.addAttribute("user",user);
-        return "index";
+            model.addAttribute("user",user);
+            return "index";
+        }
+        else{
+            return "unloginedindex";
+        }
+
     }
 }

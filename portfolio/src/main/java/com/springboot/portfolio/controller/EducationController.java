@@ -47,7 +47,7 @@ public class EducationController {
         try {
             EducationDto educationDto1
                     = eduService.updateEducation(educationDto);
-            return ResponseEntity.status(HttpStatus.OK).body(educationDto);
+            return ResponseEntity.status(HttpStatus.OK).body(educationDto1);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FOUND).body("예외가 발생했습니다.");
         }

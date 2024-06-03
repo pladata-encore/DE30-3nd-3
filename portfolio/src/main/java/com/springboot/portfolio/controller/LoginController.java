@@ -189,6 +189,9 @@ public class LoginController {
         return "unloginedindex";
     }
 
-
+    @GetMapping("/help")
+    public String help() {
+        return "fragments/help";
+    }
 
 }
