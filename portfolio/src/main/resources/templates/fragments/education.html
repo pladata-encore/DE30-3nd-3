@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Education Section-->
+<section th:fragment="educationSection">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+    <h2 class="text-secondary fw-bolder mb-4" id="educationTitle" data-bs-toggle="modal" data-bs-target="#addEducationModal" style="cursor: pointer;">Education</h2>
+    </div>
+    <!-- Education Cards -->
+    <div th:each="education : ${educations}">
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <div class="row align-items-center gx-5">
+                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                        <div class="bg-light p-4 rounded-4" th:onclick="'openEditOrDeleteEduModal(' + ${education.eduId} + ')'">
+                            <div class="text-secondary fw-bolder mb-2" th:text="${education.start_date} + ' - '+ ${education.end_date}">2015 - 2017</div>
+                            <div class="mb-2">
+                                <div class="small fw-bolder" th:text="${education.school}"></div>
+                            </div>
+                            <div class="fst-italic">
+                                <div class="small text-muted" th:text="${education.graduate}"></div>
+                                <div class="small text-muted" th:text="${education.major}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8"><div th:text="${education.content}"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Education Modal -->
+    <div class="modal fade" id="editEducationModal" tabindex="-1" aria-labelledby="editEducationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editEducationModalLabel">Edit Education</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editEducationForm">
+                        <input type="hidden" id="educationId" name="id">
+                        <div class="mb-3">
+                            <label for="school" class="form-label">School</label>
+                            <input type="text" class="form-control" id="school" name="school">
+                        </div>
+                        <div class="mb-3">
+                            <label for="degree" class="form-label">Degree</label>
+                            <input type="text" class="form-control" id="degree" name="graduate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="major" class="form-label">Major</label>
+                            <input type="text" class="form-control" id="major" name="major">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="content" rows="3"></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="adminDate" class="form-label">Admission Date</label>
+                                <input type="text" class="form-control" id="adminDate" name="adminDate">
+                            </div>
+                            <div class="col">
+                                <label for="graduateDate" class="form-label">Graduation Date</label>
+                                <input type="text" class="form-control" id="graduateDate" name="graduateDate">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveEduChanges()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 수정 및 삭제를 선택할 수 있는 모달 -->
+    <div class="modal fade" id="editOrDeleteEduModal" tabindex="-1" aria-labelledby="editOrDeleteEduModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editOrDeleteEduModalLabel">수정 또는 삭제 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editEducationModal" onclick="openEduEditModal()">
+                        수정
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteEducation()">
+                        삭제
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function openEduEditModal() {
+
+        }
+        function saveEduChanges() {
+
+        }
+
+        function openEditOrDeleteEduModal(educationId) {
+            $("#editOrDeleteModal").modal("show");
+        }
+        function deleteEducation() {
+        }
+    </script>
+</section>
+</html>

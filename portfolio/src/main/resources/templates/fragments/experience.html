@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Experience Section-->
+<section th:fragment="experienceSection">
+    <!-- Your experience HTML code here -->
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2 class="text-primary fw-bolder mb-0" id="experienceTitle">Experience</h2>
+        <!-- Download resume button-->
+        <!-- Note: Set the link href target to a PDF file within your project-->
+    </div>
+    <!-- Experience Cards -->
+    <div th:each="experience : ${experiences}">
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5" >
+                <div class="row align-items-center gx-5">
+                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                        <div class="bg-light p-4 rounded-4" th:onclick="'openEditOrDeleteExpModal(' + ${experience.expId} + ')'">
+                            <div class="text-primary fw-bolder mb-2" th:text="${experience.startDate} + ' - '+ ${experience.endDate}"></div>
+                            <div class="small fw-bolder" th:text="${experience.job}"></div>
+                            <div class="small text-muted" th:text="${experience.companyName}"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div th:text="${experience.content}"></div>
+                    </div>
+                    <!--
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editExperienceModal" th:data-experience-id="${experience.expId}" th:onclick="'openEditModal(' + ${experience.expId} + ')'">
+                        Edit
+                    </button>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Experience Modal -->
+    <div class="modal fade" id="editExperienceModal" tabindex="-1" aria-labelledby="editExperienceModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editExperienceModalLabel">Edit Experience</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editExperienceForm">
+                        <input type="hidden" id="experienceId" name="id">
+                        <div class="mb-3">
+                            <label for="job" class="form-label">Job Title</label>
+                            <input type="text" class="form-control" id="job" name="job">
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="companyName" name="companyName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Content</label>
+                            <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="text" class="form-control" id="startDate" name="startDate">
+                            </div>
+                            <div class="col">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="text" class="form-control" id="endDate" name="endDate">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveExpChanges()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 수정 및 삭제를 선택할 수 있는 모달 -->
+    <div class="modal fade" id="editOrDeleteExpModal" tabindex="-1" aria-labelledby="editOrDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editOrDeleteModalLabel">수정 또는 삭제 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editExperienceModal" onclick="openExpEditModal()">
+                        수정
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteExperience()">
+                        삭제
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function openExpEditModal() {
+
+        }
+        function saveExpChanges() {
+
+        }
+        function openEditOrDeleteExpModal(experienceId) {
+            $("#editOrDeleteModal").modal("show");
+        }
+        function deleteExperience() {
+        }
+    </script>
+</section>
+</html>
+

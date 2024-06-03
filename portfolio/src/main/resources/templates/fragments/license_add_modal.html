@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<section th:fragment="LicenseAddSection">
+    <!-- Licenses Modal HTML -->
+    <!-- Create License Modal -->
+    <div class="modal fade" id="addLicenseModal" aria-hidden="true" aria-labelledby="addModallabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModallabel">Add License</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form content for adding license-->
+                    <form id="addLicenseForm" th:action="@{/license/add}" th:method="post">
+                        <div class="mb-3">
+                            <label for="license" class="col-form-label">License:</label>
+                            <input type="text" class="form-control" id="license" name="licenseName">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete License Modal -->
+    <div class="modal fade" id="deleteLicenseModal" aria-hidden="true" aria-labelledby="DeleteLicenseModallabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="DeleteLicenseModallabel">삭제하시겠습니까?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deleteLicense()">Yes</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</html>

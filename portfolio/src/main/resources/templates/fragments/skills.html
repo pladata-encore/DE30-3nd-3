@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Skills Section-->
+<section th:fragment="skillsetSection">
+    <!-- Skillset Card-->
+
+           <!-- Skills list-->
+            <div class="mb-0">
+                <div class="row">
+                    <!-- Skills Header -->
+                    <div class="col">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3">
+                                <i class="bi bi-tools"></i>
+                            </div>
+                            <h3 class="fw-bolder mb-0">
+                                <!--                                <span class="text-gradient d-inline" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Licenses</span>-->
+                                <span class="text-gradient d-inline" data-bs-target="#addSkillModal" data-bs-toggle="modal" >Skills</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skills Content -->
+                <div class="row">
+                    <!-- Iterating over licenses and generating columns -->
+                    <div class="col-md-4 mb-4" th:each="userstack : ${userstacks}">
+                        <div class="grid-item d-flex align-items-center bg-light rounded-4 p-3 h-100" th:onclick="'openDeleteSkillModal(' + ${userstack.userStackId} + ')'">
+                            <div class="d-flex align-items-center">
+                                <img th:src="${userstack.imageUrl}" alt="Skill Image" width="50" height="50" class="me-2"/>
+                            </div>
+                            <span class="flex-grow-1 text-center" th:text="${userstack.skill}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let selectedSkillId = null
+
+        function openDeleteSkillModal(skillId) {
+            selectedSkillId = skillId;
+            console.log(selectedSkillId);
+            $("#deleteSkillModal").modal("show");
+            }
+
+         function deleteSkill() {
+            if(selectedSkillId) {
+                    fetch(`http://localhost:8080/userStack/delete?id=${selectedSkillId}`, {
+                        method: 'DELETE',
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('기술 정보를 삭제하는 중에 문제가 발생했습니다.');
+                        }
+                        else {
+                            alert("기술 정보가 삭제되었습니다.");
+                        }
+                    })
+                    .then(data => {
+                        // Handle success response
+                        console.log('Success:', data);
+                        location.reload(); // Reload the page to see the updated content
+                    })
+                    .catch(error => {
+                        // 에러 처리
+                        console.error("에러:", error.message);
+                        alert(error.message);
+                    });
+                 } else {
+                    alert("기술 정보를 삭제할 수 없습니다. 다시 시도해주세요.");
+                }
+            }
+    </script>
+</section>
+</html>

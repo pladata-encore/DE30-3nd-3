@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<section th:fragment="SkillAddSection">
+    <!-- Skill Modal HTML -->
+    <!-- Create Skill Modal -->
+    <div class="modal fade" id="addSkillModal" aria-hidden="true" aria-labelledby="addSkillModalLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addSkillModalLabel">Add Skill</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form content for adding license-->
+                    <form id="addSkillForm" th:action="@{/skills/add}" th:method="post">
+                        <div class="mb-3">
+                            <label for="skill" class="col-form-label">Skill:</label>
+                            <select class="form-select" id="skill" name="skill">
+                                <option value="">Select a skill</option>
+                                <option th:each="skill : ${skills}" th:value="${skill.skill_name}" th:text="${skill.skill_name}"></option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Skill Modal -->
+    <div class="modal fade" id="deleteSkillModal" aria-hidden="true" aria-labelledby="deleteSkillModallabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteSkillModallabel">삭제하시겠습니까?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deleteSkill()">Yes</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</html>
